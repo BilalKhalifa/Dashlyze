@@ -1,18 +1,10 @@
-# Node
-node_modules
-dist
-.env
-.env.local
-.env.*.local
-
-# Vite
+roadmap.txt
+node_modules/
+client/node_modules/
+server/node_modules/
+client/dist/
+client/.env
+server/.env
 *.local
-
-# Editor
-.vscode
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.vscode/
+.idea/
