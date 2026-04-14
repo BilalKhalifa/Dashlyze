@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { analyzeDataset } from "../lib/api";
 import { parseCSV, isSupportedFile, formatFileSize } from "../lib/csvParser";
+import { CloudUpload  } from "lucide-react";
 
 function DataImport() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -8,6 +9,7 @@ function DataImport() {
   const [analysisResult, setAnalysisResult] = useState(null);
   const [isParsing, setIsParsing] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState("");
 
   async function handleFile(file) {
@@ -51,6 +53,23 @@ function DataImport() {
     setParsedDataset(dataset);
   }
 
+  function handleDragOver(e){
+    e.preventDefault();
+    setDragActive(true);
+  }
+
+  function handleDragLeave(e){
+    e.preventDefault();
+    setDragActive(false);
+  }
+
+  function handleDrop(e){
+    e.preventDefault();
+    setDragActive(false);
+    const file = e.dataTransfer.files?.[0];
+    handleFile(file);
+  }
+
   function handleInputChange(event) {
     const file = event.target.files?.[0];
     handleFile(file);
@@ -92,126 +111,36 @@ function DataImport() {
   }
 
   return (
-    <div style={{ padding: "24px", color: "#fff" }}>
-      <h1>Data Import</h1>
-      <p>Upload a file, preview the parsed dataset, then send it to the backend.</p>
-
-      <div
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        style={{
-          border: "2px dashed #666",
-          borderRadius: "12px",
-          padding: "24px",
-          marginTop: "20px",
-          marginBottom: "20px",
-          background: "#1a1a1a",
-        }}
-      >
-        <p>Drag and drop a CSV file here, or choose one manually.</p>
-        <input type="file" accept=".csv,.tsv,.txt" onChange={handleInputChange} />
-      </div>
-
-      {selectedFile && (
-        <div style={{ marginBottom: "16px" }}>
-          <strong>Selected file:</strong> {selectedFile.name} (
-          {formatFileSize(selectedFile.size)})
-        </div>
-      )}
-
-      {isParsing && <p>Parsing file...</p>}
-
-      {error && (
-        <div style={{ color: "#ff6b6b", marginBottom: "16px" }}>
-          <strong>Error:</strong> {error}
-        </div>
-      )}
-
-      {parsedDataset && (
-        <div style={{ marginTop: "24px" }}>
-          <h2>Parsed Dataset</h2>
-          <p>
-            <strong>Columns:</strong> {parsedDataset.columns.length} |{" "}
-            <strong>Rows:</strong> {parsedDataset.rows.length}
-          </p>
-
-          <h3>Column Types</h3>
-          <ul>
-            {parsedDataset.columns.map((col) => (
-              <li key={col.name}>
-                {col.name} - {col.type}
-              </li>
-            ))}
-          </ul>
-
-          <h3>Preview</h3>
-          <div style={{ overflowX: "auto" }}>
-            <table
-              border="1"
-              cellPadding="8"
-              style={{ borderCollapse: "collapse", width: "100%" }}
-            >
-              <thead>
-                <tr>
-                  {parsedDataset.columns.map((col) => (
-                    <th key={col.name}>{col.name}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {parsedDataset.rows.slice(0, 5).map((row, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {parsedDataset.columns.map((col) => (
-                      <td key={col.name}>{String(row[col.name] ?? "")}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <button
-            onClick={handleAnalyze}
-            disabled={isAnalyzing}
-            style={{
-              marginTop: "20px",
-              padding: "10px 16px",
-              borderRadius: "8px",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            {isAnalyzing ? "Analyzing..." : "Analyze Dataset"}
-          </button>
-        </div>
-      )}
-
-      {analysisResult && (
-        <div style={{ marginTop: "32px" }}>
-          <h2>Backend Response</h2>
-          <p>
-            <strong>Message:</strong> {analysisResult.message}
-          </p>
-
-          {analysisResult.widget && (
-            <div>
-              <p>
-                <strong>Widget Title:</strong> {analysisResult.widget.title}
-              </p>
-              <p>
-                <strong>Widget Type:</strong> {analysisResult.widget.type}
-              </p>
-              <p>
-                <strong>X Field:</strong> {analysisResult.widget.config?.xField}
-              </p>
-              <p>
-                <strong>Y Field:</strong> {analysisResult.widget.config?.yField}
-              </p>
-            </div>
-          )}
-        </div>
-      )}
+   <label
+    htmlFor="fileUpload"
+    onDrop={handleDrop}
+    onDragOver={handleDragOver}
+    onDragLeave={handleDragLeave}
+    className={`mt-6 mb-6 flex min-h-[340px] w-full cursor-pointer flex-col item-center justify-center rounded-[32px] border border-dashed px-6 py-12 text-center transition-all duration-300
+   ${
+    dragActive ? "border-violet-300 bg-violet-500/10 shadow-[0_0_40px_rgba(168,85,247,0.28)]" 
+    : "border-violet-300/40 bg-[#1b0728] shadow-[0_0_32px_rgba(139,92,246,0.14)] hover: border-violet-300/50"
+    }`
+    }
+   >
+    <div className = "mb-6 flex h-15 w-15 items-center justify-center rounded-full bg-violet-500/15 shadow-[0_0_24px_rgba(139,92,246,0.25)]">
+      <CloudUpload className="h-9 w-9 text-violet-500" />
     </div>
+
+    <h2 className="text-3xl font-semibold tracking-tight  text-white md:text-4xl">
+      Initialize New Observation
+    </h2>
+
+    
+  <p className="mt-4 max-w-2xl text-sm leading-7 text-violet-200/60 md:text-lg">
+    Drop your CSV, TSV, or TXT data stream here to begin analysis.
+  </p>
+
+  <span className="mt-8 inline-flex rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-8 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(168,85,247,0.45)] md:px-10 md:py-4 md:text-lg">
+    Upload Files
+  </span>
+
+   </label>
   );
 }
 

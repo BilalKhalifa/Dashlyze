@@ -1,7 +1,9 @@
+import DataImport from "./DataImport";
+
 function Dashboard() {
     return (
         <div>
-            <h1>Dashboard</h1>
+            <DataImport />
         </div>
     );
 }
