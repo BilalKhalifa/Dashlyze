@@ -75,12 +75,6 @@ function DataImport() {
     handleFile(file);
   }
 
-  function handleDrop(event) {
-    event.preventDefault();
-    const file = event.dataTransfer.files?.[0];
-    handleFile(file);
-  }
-
   function handleDragOver(event) {
     event.preventDefault();
   }
@@ -116,29 +110,29 @@ function DataImport() {
     onDrop={handleDrop}
     onDragOver={handleDragOver}
     onDragLeave={handleDragLeave}
-    className={`mt-6 mb-6 flex min-h-[340px] w-full cursor-pointer flex-col item-center justify-center rounded-[32px] border border-dashed px-6 py-12 text-center transition-all duration-300
+    className={`mt-6 mb-6 flex min-h-[340px] w-full cursor-pointer flex-col gap-6 items-center justify-center rounded-[32px] border border-4 border-dashed px-6 py-12 text-center transition-all duration-300
    ${
-    dragActive ? "border-violet-300 bg-violet-500/10 shadow-[0_0_40px_rgba(168,85,247,0.28)]" 
-    : "border-violet-300/40 bg-[#1b0728] shadow-[0_0_32px_rgba(139,92,246,0.14)] hover: border-violet-300/50"
+    dragActive ? "border-violet-300 bg-[#3b1870]/50 shadow-[0_0_40px_rgba(168,85,247,0.28)]" 
+    : "border-violet-300/40 bg-[#3b1870]/30 shadow-[0_0_32px_rgba(139,92,246,0.14)] hover: border-violet-300/50"
     }`
     }
    >
-    <div className = "mb-6 flex h-15 w-15 items-center justify-center rounded-full bg-violet-500/15 shadow-[0_0_24px_rgba(139,92,246,0.25)]">
-      <CloudUpload className="h-9 w-9 text-violet-500" />
+    <div className = "mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#7c3aed] shadow-[0_0_24px_rgba(139,92,246,0.25)]">
+      <CloudUpload className="h-9 w-9 text-[#f0e9ff]" />
     </div>
 
     <h2 className="text-3xl font-semibold tracking-tight  text-white md:text-4xl">
       Initialize New Observation
     </h2>
 
-    
-  <p className="mt-4 max-w-2xl text-sm leading-7 text-violet-200/60 md:text-lg">
-    Drop your CSV, TSV, or TXT data stream here to begin analysis.
-  </p>
+    <p className="mt-4 max-w-2xl text-sm leading-7 text-violet-200/60 md:text-lg">
+      Drop your CSV, TSV, or TXT data stream here to begin analysis.
+    </p>
 
-  <span className="mt-8 inline-flex rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-8 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(168,85,247,0.45)] md:px-10 md:py-4 md:text-lg">
-    Upload Files
-  </span>
+    <span className="inline-flex items-center rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#9f5cff] text-sm font-medium text-[#f0e9ff] !px-6 !py-2 hover:from-[#9f5cff] hover:to-[#7c3aed] transition-colors duration-300 cursor-pointer">
+      Upload Files
+    </span>
+
 
    </label>
   );
