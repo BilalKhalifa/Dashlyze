@@ -129,7 +129,7 @@ function DataImport() {
       Drop your CSV, TSV, or TXT data stream here to begin analysis.
     </p>
 
-    <span className="inline-flex items-center rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#9f5cff] text-sm font-medium text-[#f0e9ff] !px-6 !py-2 hover:from-[#9f5cff] hover:to-[#7c3aed] transition-colors duration-300 cursor-pointer">
+    <span className="inline-flex items-center rounded-full bg-gradient-to-r from-[#7c3aed] to-[#9f5cff] text-sm font-medium text-[#f0e9ff] !px-6 !py-2 hover:from-[#9f5cff] hover:to-[#7c3aed] transition-colors duration-300 cursor-pointer">
       Upload Files
     </span>
 
