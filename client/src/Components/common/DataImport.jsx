@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { analyzeDataset } from "../lib/api";
-import { parseCSV, isSupportedFile, formatFileSize } from "../lib/csvParser";
+import { analyzeDataset } from "../../lib/api";
+import { parseCSV, isSupportedFile, formatFileSize } from "../../lib/csvParser";
 import { CloudUpload  } from "lucide-react";
 
 function DataImport() {
