@@ -1,7 +1,10 @@
+import DataImportFromSheets from "../Components/common/DataImportFromSheets";
+
 function Reports() {
     return (
         <div className="page-content">
-            <h1 className="page-title">Reports</h1>
+            
+            <DataImportFromSheets />
         </div>
     );
 }
