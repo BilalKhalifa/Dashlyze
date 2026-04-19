@@ -1,16 +1,11 @@
 import { useState } from "react";
-import { analyzeDataset } from "../../lib/api";
-import { parseCSV, isSupportedFile, formatFileSize } from "../../lib/csvParser";
+import { parseCSV, isSupportedFile } from "../../lib/csvParser";
 import { CloudUpload  } from "lucide-react";
 
-function DataImport() {
+function DataImport({ setDataset , setError }) {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [parsedDataset, setParsedDataset] = useState(null);
-  const [analysisResult, setAnalysisResult] = useState(null);
   const [isParsing, setIsParsing] = useState(false);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [dragActive, setDragActive] = useState(false);
-  const [error, setError] = useState("");
 
   async function handleFile(file) {
     if (!file) return;
@@ -18,13 +13,10 @@ function DataImport() {
     if (!isSupportedFile(file)) {
       setError("Unsupported file type. Please upload CSV, TSV, or TXT.");
       setSelectedFile(null);
-      setParsedDataset(null);
-      setAnalysisResult(null);
       return;
     }
 
     setError("");
-    setAnalysisResult(null);
     setSelectedFile(file);
     setIsParsing(true);
 
@@ -34,7 +26,6 @@ function DataImport() {
 
     if (parsed.error) {
       setError(parsed.error);
-      setParsedDataset(null);
       return;
     }
 
@@ -50,7 +41,7 @@ function DataImport() {
       rawText: parsed.rawText,
     };
 
-    setParsedDataset(dataset);
+    setDataset(dataset);
   }
 
   function handleDragOver(e){
@@ -75,35 +66,6 @@ function DataImport() {
     handleFile(file);
   }
 
-  function handleDragOver(event) {
-    event.preventDefault();
-  }
-
-  async function handleAnalyze() {
-    if (!parsedDataset) {
-      setError("Please upload and parse a dataset first.");
-      return;
-    }
-
-    try {
-      setError("");
-      setIsAnalyzing(true);
-      setAnalysisResult(null);
-
-      const result = await analyzeDataset({
-        columns: parsedDataset.columns,
-        rows: parsedDataset.rows,
-        metadata: parsedDataset.metadata,
-      });
-
-      setAnalysisResult(result);
-    } catch (err) {
-      setError(err.message || "Something went wrong during analysis.");
-    } finally {
-      setIsAnalyzing(false);
-    }
-  }
-
   return (
    <label
     htmlFor="fileUpload"
@@ -117,6 +79,14 @@ function DataImport() {
     }`
     }
    >
+    
+    <input
+      id="fileUpload"
+      type="file"
+      accept=".csv,.tsv,.txt"
+      className="hidden"
+      onChange={handleInputChange}
+    />
     <div className = "mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#7c3aed] shadow-[0_0_24px_rgba(139,92,246,0.25)]">
       <CloudUpload className="h-9 w-9 text-[#f0e9ff]" />
     </div>

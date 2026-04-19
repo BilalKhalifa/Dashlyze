@@ -4,6 +4,8 @@ import DataImportFromSheets from "../Components/common/DataImportFromSheets";
 
 function Dashboard() {
     const[activeTab, setactiveTab] = useState("csv");
+    const [dataset, setDataset] = useState(null);
+    const [error,setError] = useState("");
 
     return (
         <div>
@@ -23,7 +25,12 @@ function Dashboard() {
                     >Google Sheets</button>
                 </div>
             </div>
-            {activeTab === "csv" ? <DataImport /> : <DataImportFromSheets />}
+            {activeTab === "csv" 
+            ? <DataImport 
+            setDataset = {setDataset}
+            setError={setError}
+            /> 
+            : <DataImportFromSheets />}
         </div>
     );
 }
