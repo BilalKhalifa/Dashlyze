@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { RiLinksLine } from "react-icons/ri";
+import Papa from "papaparse";
 
-function DataImportFromSheets() {
+function extractSheetId(url) {
+    const regex = /\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+}
+
+function DataImportFromSheets({setDataset, setError}) {
     
     return (
         <div>

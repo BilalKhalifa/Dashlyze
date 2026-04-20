@@ -27,10 +27,13 @@ function Dashboard() {
             </div>
             {activeTab === "csv" 
             ? <DataImport 
-            setDataset = {setDataset}
-            setError={setError}
+                setDataset = {setDataset}
+                setError={setError}
             /> 
-            : <DataImportFromSheets />}
+            : <DataImportFromSheets 
+                setDataset = {setDataset}
+                setError={setError}
+            />}
         </div>
     );
 }

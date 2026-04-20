@@ -6,6 +6,8 @@ function DataImport({ setDataset , setError }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isParsing, setIsParsing] = useState(false);
   const [dragActive, setDragActive] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [status, setStatus] = useState("idle");
 
   async function handleFile(file) {
     if (!file) return;
@@ -16,32 +18,57 @@ function DataImport({ setDataset , setError }) {
       return;
     }
 
-    setError("");
-    setSelectedFile(file);
-    setIsParsing(true);
+  try {
+      // 2) Start run
+      setError("");
+      setSelectedFile(file);
+      setIsParsing(true);
 
-    const parsed = await parseCSV(file);
+      setStatus("reading");
+      setProgress(10);
+      await sleep(120);
 
-    setIsParsing(false);
+      // 3) Move into parsing stage
+      setStatus("parsing");
+      setProgress(35);
+      await sleep(120);
 
-    if (parsed.error) {
-      setError(parsed.error);
-      return;
+      const parsed = await parseCSV(file);
+
+      setProgress(80);
+      await sleep(100);
+
+      // 4) Handle parse result
+      if (parsed.error) {
+        setError(parsed.error);
+        setStatus("error");
+        setProgress(0);
+        return;
+      }
+
+      const dataset = {
+        columns: parsed.columns,
+        rows: parsed.rows,
+        metadata: {
+          sourceType: "csv",
+          fileName: file.name,
+          fileSize: file.size,
+        },
+        preview: parsed.preview,
+        rawText: parsed.rawText,
+      };
+
+      setDataset(dataset);
+
+      setProgress(100);
+      setStatus("success");
+    } catch (err) {
+      setError(err?.message || "Failed to process file.");
+      setStatus("error");
+      setProgress(0);
+    } finally {
+      setIsParsing(false);
     }
-
-    const dataset = {
-      columns: parsed.columns,
-      rows: parsed.rows,
-      metadata: {
-        sourceType: "csv",
-        fileName: file.name,
-        fileSize: file.size,
-      },
-      preview: parsed.preview,
-      rawText: parsed.rawText,
-    };
-
-    setDataset(dataset);
   }
 
   function handleDragOver(e){
