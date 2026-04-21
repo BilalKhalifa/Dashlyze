@@ -8,19 +8,20 @@ function App() {
     const [activePage, setActivePage]   = useState('dashboard');
 
     return (
-        <div className="app">
+        <div className="app flex-col flex-1 mt-[100px] h-screen overflow-hidden">
             <Header
                 sidebarOpen={sidebarOpen}
                 toggleSidebar={() => setSidebarOpen(prev => !prev)}
                 setActivePage={setActivePage}
             />
-            <div className="app-body">
-                <Sidebar
+            <div className="flex flex-1 overflow-hidden">
+                {/* <Sidebar
                     isOpen={sidebarOpen}
                     activePage={activePage}
                     setActivePage={setActivePage}
-                />
+                /> */}
                 <Main
+                    className="overflow-y-auto"
                     activePage={activePage}
                     sidebarOpen={sidebarOpen}
                 />
