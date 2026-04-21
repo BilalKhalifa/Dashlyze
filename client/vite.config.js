@@ -3,6 +3,17 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  content : [
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme:{
+    extends:{
+        fontFamily: {
+          'Ubuntu': ['Ubuntu', 'sans-serif']
+       }
+    }
+  },
   plugins: [
     react(),
     tailwindcss()
