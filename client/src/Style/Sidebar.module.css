@@ -1,6 +1,1 @@
-.sidebarHeader{
-    background-color: #f0f0f0;
-    padding: 10px;
-    font-size: 1.2em;
-    font-weight: bold;
-}
+/* Sidebar styles moved to Tailwind classes in Sidebar.jsx */
