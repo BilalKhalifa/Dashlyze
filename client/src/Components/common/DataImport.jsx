@@ -99,7 +99,7 @@ function DataImport({ setDataset , setError }) {
     onDrop={handleDrop}
     onDragOver={handleDragOver}
     onDragLeave={handleDragLeave}
-    className={`mt-6 mb-6 flex min-h-[340px] w-full cursor-pointer flex-col gap-6 items-center justify-center rounded-[32px] border border-4 border-dashed px-6 py-12 text-center transition-all duration-300
+    className={`mx-6 my-6  flex min-h-[340px] cursor-pointer flex-col gap-6 items-center justify-center rounded-[32px] border border-4 border-dashed px-6 py-12 text-center transition-all duration-300
    ${
     dragActive ? "border-violet-300 bg-[#3b1870]/50 shadow-[0_0_40px_rgba(168,85,247,0.28)]" 
     : "border-violet-300/40 bg-[#3b1870]/30 shadow-[0_0_32px_rgba(139,92,246,0.14)] hover: border-violet-300/50"
