@@ -8,7 +8,7 @@ function Dashboard() {
     const [error,setError] = useState("");
 
     return (
-        <div>
+        <div className="w-full">
             <div className="w-full flex justify-center">
                 <div className="inline-flex items-center gap-2 border border-2 border-[#9f5cff]/20 rounded-xl !p-1 !mb-6 min-w-min">
                     <button
