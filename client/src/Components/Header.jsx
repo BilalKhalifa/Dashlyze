@@ -1,3 +1,5 @@
+import { ChevronRight } from 'lucide-react';
+
 function DashlyzeLogoSVG() {
     return (
         <svg
@@ -53,15 +55,15 @@ function DashlyzeLogoSVG() {
 
 function Header({ sidebarOpen, toggleSidebar, setActivePage }) {
     return (
-        <div className="header">
+        <div className="fixed top-0 left-0 right-0 h-[60px] bg-[var(--bg-surface)] z-[100] flex items-center px-4 py-2 shadow-[10px_10px_30px_rgba(159, 92, 255, 0.2)]
+        rounded-lg m-2
+        ">
             <button
                 className={`menu-btn ${sidebarOpen ? 'open' : ''}`}
                 onClick={toggleSidebar}
                 aria-label="Toggle sidebar"
             >
-                <span></span>
-                <span></span>
-                <span></span>
+            <ChevronRight />
             </button>
 
             <div
