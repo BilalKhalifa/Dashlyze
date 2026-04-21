@@ -13,7 +13,7 @@ function DataImportFromSheets({setDataset, setError}) {
     return (
         <div>
             <label
-                className={`mt-6 mb-6 flex min-h-[340px] w-full cursor-pointer flex-col gap-6 items-center justify-center rounded-[32px] border border-4 border-dashed px-6 py-12 text-center transition-all duration-300 border-violet-300/40 bg-[#3b1870]/30 hover:shadow-[0_0_32px_rgba(139,92,246,0.14)] hover:border-[#a48ebc]`}
+                className={`mx-6 my-6 flex min-h-[340px] cursor-pointer flex-col gap-6 items-center justify-center rounded-[32px] border border-4 border-dashed px-6 py-12 text-center transition-all duration-300 border-violet-300/40 bg-[#3b1870]/30 hover:shadow-[0_0_32px_rgba(139,92,246,0.14)] hover:border-[#a48ebc]`}
             >
                 <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#7c3aed] shadow-[0_0_24px_rgba(139,92,246,0.25)]">
                     <RiLinksLine className="h-9 w-9 text-[#f0e9ff]" />
