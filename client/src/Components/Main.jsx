@@ -14,7 +14,7 @@ const pages = {
 
 function Main({ activePage, sidebarOpen }) {
     return (
-        <main className={`main ${sidebarOpen ? 'main--shifted' : ''}`}>
+        <main className={` w-full main ${sidebarOpen ? 'main--shifted' : ''}`}>
             {pages[activePage] ?? <Dashboard />}
         </main>
     );
