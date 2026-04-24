@@ -8,18 +8,25 @@ function App() {
     const [activePage, setActivePage]   = useState('dashboard');
 
     return (
-        <div className="app flex-col flex-1 mt-[100px] h-screen overflow-hidden">
-            <Header
-                sidebarOpen={sidebarOpen}
-                toggleSidebar={() => setSidebarOpen(prev => !prev)}
+        <div className='flex h-screen bg-[var(--bg-base)]'>
+
+            <Sidebar
+                isOpen={sidebarOpen}
+                activePage={activePage}
                 setActivePage={setActivePage}
+                onToggle={() => setSidebarOpen(prev => !prev)}
             />
-            <div className="flex flex-1 overflow-hidden">
-                <Sidebar
-                    isOpen={sidebarOpen}
-                    activePage={activePage}
+
+            {/* Right column — shifts right to avoid sidebar overlap */}
+            <div className={`
+                flex flex-col flex-1 min-w-0 overflow-hidden
+                transition-all duration-[300ms] ease-[cubic-bezier(0.4,0,0.2,1)]
+                ${sidebarOpen ? 'ml-[calc(16rem+12px)]' : 'ml-[calc(4rem+12px)]'}
+            `}>
+                <Header
+                    sidebarOpen={sidebarOpen}
+                    toggleSidebar={() => setSidebarOpen(prev => !prev)}
                     setActivePage={setActivePage}
-                    onToggle={() => setSidebarOpen(prev => !prev)}
                 />
                 <Main
                     className="overflow-y-auto"
@@ -27,6 +34,7 @@ function App() {
                     sidebarOpen={sidebarOpen}
                 />
             </div>
+
         </div>
     );
 }
