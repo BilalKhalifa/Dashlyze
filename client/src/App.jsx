@@ -15,11 +15,12 @@ function App() {
                 setActivePage={setActivePage}
             />
             <div className="flex flex-1 overflow-hidden">
-                {/* <Sidebar
+                <Sidebar
                     isOpen={sidebarOpen}
                     activePage={activePage}
                     setActivePage={setActivePage}
-                /> */}
+                    onToggle={() => setSidebarOpen(prev => !prev)}
+                />
                 <Main
                     className="overflow-y-auto"
                     activePage={activePage}

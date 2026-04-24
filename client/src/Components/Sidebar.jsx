@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard, ChartArea, Flag, BetweenHorizontalEnd } from 'lucide-react';
+import { LayoutDashboard, ChartArea, Flag, BetweenHorizontalEnd, ChevronLeft } from 'lucide-react';
 
 const NAV_ITEMS =[
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -45,10 +45,55 @@ function NavItem({ item, isActive, isOpen, onClick }){
     );
 }
 
-const Sidebar = () => {
-  return (
-    <div>Sidebar</div>
-  )
+function Sidebar({ isOpen, activePage, setActivePage, onToggle }){
+    return(
+        <aside
+            className={`
+            relative flex flex-col shrink-0 h-full py-4 px-2 
+            bg-[var(--bg-surface)] border-r border-[var(--border)] 
+            transition-all duration-[300ms] ease-cubic-bezier(0.4, 0, 0.2, 1)
+            ${isOpen ? 'w-64' : 'w-16'}
+        `}
+        >
+        <nav 
+            className="flex flex-col gap-2 mt-4"
+        >
+            {NAV_ITEMS.map((item) => (
+                <NavItem
+                    key={item.id}
+                    item={item}
+                    isActive={activePage === item.id}
+                    isOpen={isOpen}
+                    onClick={setActivePage}
+                />
+            ))}
+        </nav>
+        <div className="h-px bg[var(--border)] my-4" />
+        <button
+            onClick={onToggle}
+            className={`
+            flex items-center gap-3 w-full px-4 py-3 rounded-xl
+            text-[var(--accent)] hover:text-[var(--accent-glow)]
+            hover:bg-[var(--bg-hover)] transition-colors duration-[300ms] ease-cubic-bezier(0.4, 0, 0.2, 1)
+            `}
+            title= {isOpen ? 'Collapse sidebar' : 'Expan sidebar'}
+        >
+            {isOpen
+                ?<ChevronLeft size={20} className='shrink-0'/>
+                :<ChevronLeft size={20} className='shrink-0 rotate-180' />
+            }
+            <span 
+                className={`
+                    text-sm whitespace-nowrap overflow-hidden transition-all duration-[300ms] ease-cubic-bezier(0.4, 0, 0.2, 1)
+                    ${ isOpen ? 'w-auto opacity-100' : 'w-0 opacity-0'}`
+            }
+            >
+                Collapse
+            </span>
+
+        </button>
+        </aside>
+    );
 }
 
 export default Sidebar

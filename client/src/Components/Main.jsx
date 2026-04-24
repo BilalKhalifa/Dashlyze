@@ -1,7 +1,7 @@
 import Dashboard  from '../Pages/Dashboard.jsx';
 import Analytics  from '../Pages/Analytics.jsx';
 import Reports    from '../Pages/Reports.jsx';
-import DataImport from './common/DataImport.jsx';
+import DataImport from '../Pages/DataImport.jsx';
 import Settings   from '../Pages/Settings.jsx';
 
 const pages = {
@@ -14,7 +14,7 @@ const pages = {
 
 function Main({ activePage, sidebarOpen }) {
     return (
-        <main className={` w-full main ${sidebarOpen ? 'main--shifted' : ''}`}>
+        <main className={`w-full main ${sidebarOpen ? 'main--shifted' : ''}`}>
             {pages[activePage] ?? <Dashboard />}
         </main>
     );
