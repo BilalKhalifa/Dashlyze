@@ -84,8 +84,8 @@ function Sidebar({ isOpen, activePage, setActivePage, onToggle }){
                 title={isOpen ? 'Collapse sidebar' : 'Expand sidebar'}
             >
                 {isOpen
-                    ? <ChevronLeft size={20} className='shrink-0'/>
-                    : <ChevronLeft size={20} className='shrink-0 rotate-180' />
+                    ? <ChevronLeft size={20} className='shrink-0 transition-transform duration-[300ms] ease-[cubic-bezier(0.4,0,0.2,1)]'/>
+                    : <ChevronLeft size={20} className='shrink-0 rotate-180 transition-transform duration-[300ms] ease-[cubic-bezier(0.4,0,0.2,1)]' />
                 }
                 <span 
                     className={`
