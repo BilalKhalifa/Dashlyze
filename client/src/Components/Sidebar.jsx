@@ -55,7 +55,7 @@ function Sidebar({ isOpen, activePage, setActivePage, onToggle }){
                 rounded-2xl m-3 h-[calc(100vh-24px)]
                 transition-all duration-[300ms] ease-[cubic-bezier(0.4,0,0.2,1)]
                 z-50
-                ${isOpen ? 'w-64' : 'w-16'}
+                ${isOpen ? 'w-60' : 'w-16'}
             `}
         >
             <nav 
