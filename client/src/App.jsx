@@ -21,7 +21,7 @@ function App() {
             <div className={`
                 flex flex-col flex-1 min-w-0 overflow-hidden
                 transition-all duration-[300ms] ease-[cubic-bezier(0.4,0,0.2,1)]
-                ${sidebarOpen ? 'ml-[calc(16rem+12px)]' : 'ml-[calc(4rem+12px)]'}
+                ${sidebarOpen ? 'ml-[276px]' : 'ml-[100px]'}
             `}>
                 <Header
                     sidebarOpen={sidebarOpen}
