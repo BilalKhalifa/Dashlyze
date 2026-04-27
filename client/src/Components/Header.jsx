@@ -56,7 +56,7 @@ function DashlyzeLogoSVG() {
 function Header({ sidebarOpen, toggleSidebar, setActivePage }) {
     return (
         <div className="h-[60px] bg-[var(--bg-surface)] z-[100] flex items-center px-4 py-2 border border-[rgba(159,92,255,0.3)] shadow-[0_4px_24px_-4px_rgba(159,92,255,0.2)]
-        rounded-2xl  mr-6 my-4
+        rounded-2xl mr-6 my-4
         ">
 
             <div

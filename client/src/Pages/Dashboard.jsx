@@ -1,6 +1,6 @@
 import {useState} from "react";
 import DataImport from "../Components/common/DataImport";
-import DataImportFromSheets from "../Components/common/DataImportFromSheets";
+import DataImportFromSheets from "../components/common/DataImportFromSheets";
 
 function Dashboard() {
     const[activeTab, setactiveTab] = useState("csv");

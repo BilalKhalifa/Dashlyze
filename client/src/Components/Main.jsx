@@ -1,8 +1,8 @@
-import Dashboard  from '../Pages/Dashboard.jsx';
+import Dashboard  from '../pages/Dashboard.jsx';
 import Analytics  from '../Pages/Analytics.jsx';
-import Reports    from '../Pages/Reports.jsx';
-import DataImport from '../Pages/DataImport.jsx';
-import Settings   from '../Pages/Settings.jsx';
+import Reports    from '../pages/Reports.jsx';
+import DataImport from '../pages/DataImport.jsx';
+import Settings   from '../pages/Settings.jsx';
 
 const pages = {
     'dashboard':   <Dashboard />,
