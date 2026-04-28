@@ -1,4 +1,4 @@
-import "./Style/App.css"
+import "./style/App.css"
 import { createRoot } from 'react-dom/client'
 import  App  from './App.jsx'
 

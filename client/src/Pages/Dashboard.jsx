@@ -1,5 +1,5 @@
 import {useState} from "react";
-import DataImport from "../Components/common/DataImport";
+import DataImport from "../components/common/DataImport";
 import DataImportFromSheets from "../components/common/DataImportFromSheets";
 
 function Dashboard() {

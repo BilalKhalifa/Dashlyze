@@ -1,4 +1,4 @@
-import DataImportFromSheets from "../Components/common/DataImportFromSheets";
+import DataImportFromSheets from "../components/common/DataImportFromSheets";
 
 function Reports() {
     return (

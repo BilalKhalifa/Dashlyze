@@ -1,5 +1,5 @@
 import Dashboard  from '../pages/Dashboard.jsx';
-import Analytics  from '../Pages/Analytics.jsx';
+import Analytics  from '../pages/Analytics.jsx';
 import Reports    from '../pages/Reports.jsx';
 import DataImport from '../pages/DataImport.jsx';
 import Settings   from '../pages/Settings.jsx';
