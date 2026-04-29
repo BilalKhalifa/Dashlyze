@@ -17,7 +17,6 @@ function App() {
                 onToggle={() => setSidebarOpen(prev => !prev)}
             />
 
-            {/* Right column — shifts right to avoid sidebar overlap */}
             <div className={`
                 flex flex-col flex-1 min-w-0 overflow-hidden
                 transition-all duration-[300ms] ease-[cubic-bezier(0.4,0,0.2,1)]

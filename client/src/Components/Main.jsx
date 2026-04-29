@@ -9,7 +9,7 @@ const pages = {
     'analytics':   <Analytics />,
     'reports':     <Reports />,
     'data-import': <DataImport />,
-    'settings':    <Settings />,
+    'settings':    <Settings />
 };
 
 function Main({ activePage, sidebarOpen }) {
