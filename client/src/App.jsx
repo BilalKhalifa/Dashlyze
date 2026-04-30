@@ -22,11 +22,7 @@ function App() {
                 transition-all duration-[300ms] ease-[cubic-bezier(0.4,0,0.2,1)]
                 ${sidebarOpen ? 'ml-[276px]' : 'ml-[100px]'}
             `}>
-                <Header
-                    sidebarOpen={sidebarOpen}
-                    toggleSidebar={() => setSidebarOpen(prev => !prev)}
-                    setActivePage={setActivePage}
-                />
+                <Header />
                 <Main
                     className="overflow-y-auto"
                     activePage={activePage}
