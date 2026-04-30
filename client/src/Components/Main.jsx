@@ -14,7 +14,7 @@ const pages = {
 
 function Main({ activePage, sidebarOpen }) {
     return (
-        <main className={`w-full main ${sidebarOpen ? 'main--shifted' : ''}`}>
+        <main className={`w-full overflow-y-auto p-6 transition-all duration-[300ms] ease-[cubic-bezier(0.4,0,0.2,1)]`}>
             {pages[activePage] ?? <Dashboard />}
         </main>
     );

@@ -1,3 +1,4 @@
+// CHANGE 7: Fixed DataImportFromSheets.jsx with proper state handling and Tailwind syntax
 import { useState } from "react";
 import { RiLinksLine } from "react-icons/ri";
 import Papa from "papaparse";
@@ -9,6 +10,8 @@ function extractSheetId(url) {
 }
 
 function DataImportFromSheets({setDataset, setError}) {
+    // CHANGE 7a: Added state to handle the input value
+    const [sheetUrl, setSheetUrl] = useState("");
     
     return (
         <div>
@@ -30,12 +33,15 @@ function DataImportFromSheets({setDataset, setError}) {
                 <div className="flex flex-col items-center justify-center">
                     <div className="relative w-full max-w-xl">
                         <input
-                        type="Text"
+                        // CHANGE 7b: Changed type from "Text" to "text" (HTML is case-sensitive)
+                        type="text"
                         placeholder="https://docs.google.com/spreadsheets/d/..."
+                        value={sheetUrl}
+                        onChange={(e) => setSheetUrl(e.target.value)}
                         className="
                         w-full !px-4 !py-3 rounded-2xl 
                         overflow-hidden whitespace-nowrap truncate
-                        bg-[#190d25] border border-[#402e58] focus:border-[#9f5cff] focus: outline-none transition-colors duration-300 ease-linear
+                        bg-[#190d25] border border-[#402e58] focus:border-[#9f5cff] focus:outline-none transition-colors duration-300 ease-linear
                         "
                         ></input>
                     </div>

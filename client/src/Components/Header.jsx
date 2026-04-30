@@ -1,4 +1,7 @@
-import { ChevronRight } from 'lucide-react';
+// CHANGE 4: Fixed Header.jsx to use React Router Link instead of lucide-react Link
+// Removed unused state-based props and made logo navigate to Dashboard via route
+import { Link } from 'react-router-dom';
+import { PATHS } from '../routes/path';
 
 function DashlyzeLogoSVG() {
     return (
@@ -53,20 +56,15 @@ function DashlyzeLogoSVG() {
     );
 }
 
-function Header({ sidebarOpen, toggleSidebar, setActivePage }) {
+function Header() {
     return (
         <div className="h-[60px] bg-[var(--bg-surface)] z-[100] flex items-center px-4 py-2 border border-[rgba(159,92,255,0.3)] shadow-[0_4px_24px_-4px_rgba(159,92,255,0.2)]
         rounded-2xl mr-6 my-4
         ">
-
-            <div
-                className="header-brand"
-                onClick={() => setActivePage('dashboard')}
-                style={{ cursor: 'pointer' }}
-                title="Go to Dashboard"
-            >
+            {/* CHANGE 4: Logo now uses React Router Link to navigate to Dashboard */}
+            <Link to={PATHS.DASHBOARD} className="header-brand" style={{ cursor: 'pointer' }} title="Go to Dashboard">
                 <DashlyzeLogoSVG />
-            </div>
+            </Link>
         </div>
     );
 }
