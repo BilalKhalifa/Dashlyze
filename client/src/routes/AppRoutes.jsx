@@ -7,8 +7,17 @@ const AppRoutes = () => {
   return (
     <Routes>
         {ROUTES.map(route => (
-            <Route key={route.path} path={route.path} element={route.element} />
-        ))}
+          route.children
+          ?(
+            <Route key = {route.path} path = {route.path} element = {route.element} >
+              {route.children.map(child => (
+                <Route key = {child.path} path = {child.path} element = {child.element} />
+              ))}
+            </Route>
+          )
+          :(<Route key={route.path} path={route.path} element = {route.element} />)
+        )
+        )}
         <Route path={PATHS.ROOT} element={<Navigate to={PATHS.DASHBOARD} replace />} />
         <Route path="*" element={<div>404 Not Found</div>} />
     </Routes>

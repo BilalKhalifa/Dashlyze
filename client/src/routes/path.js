@@ -4,5 +4,8 @@ export const PATHS = {
     DASHBOARD: '/dashboard',
     ANALYTICS: '/analytics',
     REPORTS: '/reports',
+    REPORTS_MONTHLY:   "/reports/monthly",
+    REPORTS_QUARTERLY: "/reports/quarterly",
+    REPORTS_ANNUAL:    "/reports/annual",
     DATAIMPORT: '/data-import',
 }
