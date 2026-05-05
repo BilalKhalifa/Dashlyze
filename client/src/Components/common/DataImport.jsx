@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { parseCSV, isSupportedFile } from "../../lib/csvParser";
-import { CloudUpload  } from "lucide-react";
+import { parseCSV, isSupportedFile, formatFileSize } from "../../lib/csvParser";
+import { CloudUpload, CircleCheck } from "lucide-react";
 
 function DataImport({ setDataset , setError }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -9,7 +9,6 @@ function DataImport({ setDataset , setError }) {
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState("idle");
 
-  // CHANGE 6a: Added missing sleep function for progress simulation
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   async function handleFile(file) {
@@ -55,7 +54,7 @@ function DataImport({ setDataset , setError }) {
         metadata: {
           sourceType: "csv",
           fileName: file.name,
-          fileSize: file.size,
+          fileSize: formatFileSize(file.size),
         },
         preview: parsed.preview,
         rawText: parsed.rawText,
@@ -102,7 +101,6 @@ function DataImport({ setDataset , setError }) {
     onDrop={handleDrop}
     onDragOver={handleDragOver}
     onDragLeave={handleDragLeave}
-    // CHANGE 6b: Fixed Tailwind class syntax - removed space after "hover:"
     className={`mr-6 my-6  flex min-h-[340px] cursor-pointer flex-col gap-6 items-center justify-center rounded-[32px] border border-4 border-dashed px-6 py-12 text-center transition-all duration-300
    ${
     dragActive ? "border-violet-300 bg-[#3b1870]/50 shadow-[0_0_40px_rgba(168,85,247,0.28)]" 
